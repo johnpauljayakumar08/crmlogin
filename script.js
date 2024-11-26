@@ -10,11 +10,7 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
         emailError.textContent = "Email is required.";
         emailError.style.display = "block";
         isValid = false;
-    } else if (!/\S+@\S+\.\S+/.test(email)) {
-        emailError.textContent = "Invalid email format.";
-        emailError.style.display = "block";
-        isValid = false;
-    } else {
+    }  else {
         emailError.style.display = "none";
     }
 
@@ -42,12 +38,13 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
             });
 
             const data = await response.json();
-            if (data.message === 'Logged in') {
+            if (data.message === 'Logged In') {
                 alert('Login successful!');
                 // Redirect to the ERPNext dashboard
-                window.location.href = '/dashboard'; // Replace with the actual dashboard URL
+                window.location.reload() // Replace with the actual dashboard URL
             } else {
                 alert('Login failed. Please check your credentials.');
+                window.location.reload()
             }
         } catch (error) {
             console.error('Error during login:', error);
